@@ -1,6 +1,24 @@
 @extends("layouts.app")
 
 @section("content")
+    <div id="network" style="width: 100%; height: 600px"></div>
+    <script>
+        window.onload = function () {
+            let container = document.getElementById("network")
+
+            new vis.Network(container, {
+                nodes: new vis.DataSet({!! json_encode($graph_nodes) !!}),
+                edges: new vis.DataSet({!! json_encode($graph_edges) !!}),
+            }, {
+                layout: {
+                    hierarchical: {
+                        direction: "UD",
+                    },
+                },
+            })
+        }
+    </script>
+
     <div>
         @if($users->isNotEmpty())
             <div class="table-responsive">

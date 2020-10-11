@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ReferralPath;
 use App\Models\User;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -30,7 +32,23 @@ class UserController extends Controller
                     "parent_ref.parent_user",
                     "children_refs.child_user",
                 ])
-                ->paginate()
+                ->paginate(),
+
+            "graph_nodes" => User::query()
+                ->has("descendant_refs")
+                ->has("ancestor_refs")
+                ->select([
+                    "id",
+                    "name AS label",
+                ])->get(),
+
+            "graph_edges" => ReferralPath::query()
+                ->select([
+                    "ancestor_id AS to",
+                    "descendant_id AS from",
+                ])
+                ->where("tree_depth", 1)
+                ->get()
         ]);
     }
 
