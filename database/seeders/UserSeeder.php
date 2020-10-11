@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         DB::beginTransaction();
 
         UserFactory::new()
-            ->count(100)
+            ->count(1000)
             ->create();
 
         DB::commit();

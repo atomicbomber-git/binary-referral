@@ -9,7 +9,7 @@
                     <tr>
                         <th> # </th>
                         <th> Name </th>
-                        <th> Username </th>
+                        <th> E-Mail </th>
                         <th> Referred By (Parent) </th>
                         <th> Referrals (Children) </th>
                         <th> Controls </th>
@@ -21,9 +21,9 @@
                         <tr>
                             <td> {{ $users->firstItem() + $loop->index }} </td>
                             <td> {{ $user->name  }} </td>
-                            <td> {{ $user->username  }} </td>
-                            <td> </td>
-                            <td> </td>
+                            <td> {{ $user->email  }} </td>
+                            <td> {{ $user->parent_ref->parent_user->name ?? "-" }} </td>
+                            <td> {{ implode(", ", $user->children_refs->pluck("child_user.name")->toArray() ?? []) }} </td>
                             <td>
                                 <form action="{{ route("user.destroy", $user) }}"
                                       method="POST"
