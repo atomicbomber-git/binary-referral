@@ -15,6 +15,9 @@
                         direction: "UD",
                     },
                 },
+                edges: {
+                    arrows: "from",
+                },
             })
         }
     </script>
