@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("content")
-    <div id="network" style="width: 100%; height: 600px"></div>
+    <div id="network" style="width: 100%; height: 400px; border: thin solid black" class="my-2"></div>
     <script>
         window.onload = function () {
             let container = document.getElementById("network")
@@ -18,6 +18,7 @@
                 edges: {
                     arrows: "from",
                 },
+                physics: false,
             })
         }
     </script>

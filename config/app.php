@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Binary Referral'),
+    'name' => 'Binary Referral',
 
     /*
     |--------------------------------------------------------------------------

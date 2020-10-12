@@ -28,7 +28,7 @@ class ReferralSeeder extends Seeder
             "tree_depth" => 0,
         ]);
 
-        Collection::times(50, function () use ($root) {
+        Collection::times(200, function () use ($root) {
             $parent = $root->nextEligibleDescendant();
 
             $child = User::query()
