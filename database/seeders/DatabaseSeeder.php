@@ -2,12 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\ReferralPath;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(AdminUserSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(ReferralSeeder::class);
     }

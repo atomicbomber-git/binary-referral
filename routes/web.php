@@ -24,7 +24,6 @@ Route::get('/', function () {
 
 Route::resource("user", UserController::class);
 Route::resource("user.deposit", UserDepositController::class);
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

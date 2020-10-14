@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\DB;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    protected $guarded = [];
 
-    protected $guarded = [
-
-    ];
+    const LEVEL_ADMIN = "admin";
+    const LEVEL_REGULAR = "regular";
 
     /**
      * The attributes that should be hidden for arrays.

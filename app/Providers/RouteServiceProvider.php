@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +29,21 @@ class RouteServiceProvider extends ServiceProvider
      * @var string|null
      */
     // protected $namespace = 'App\\Http\\Controllers';
+
+    public static function home()
+    {
+        /** @var User $user */
+        $user = Auth::user();
+
+        switch ($user ?? null) {
+            case User::LEVEL_REGULAR:
+                return route("user.deposit.index", $user);
+            case User::LEVEL_ADMIN:
+                return route("user");
+            default:
+                return null;
+        }
+    }
 
     /**
      * Define your route model bindings, pattern filters, etc.

@@ -4,9 +4,8 @@ namespace Database\Seeders;
 
 use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class UserSeeder extends Seeder
+class AdminUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,13 +14,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::beginTransaction();
-
         UserFactory::new()
-            ->regular()
-            ->count(1000)
-            ->create();
-
-        DB::commit();
+            ->admin()
+            ->create([
+                "email" => "admin@admin.com",
+            ]);
     }
 }
