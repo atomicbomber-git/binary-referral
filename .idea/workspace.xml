@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6aec716-eb5e-4b43-9853-7e8a08a1a020" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/seeders/AdminUserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +169,7 @@
       <workItem from="1602430811555" duration="10169000" />
       <workItem from="1602463276629" duration="4797000" />
       <workItem from="1602548870994" duration="613000" />
-      <workItem from="1602651969510" duration="456000" />
+      <workItem from="1602651969510" duration="781000" />
     </task>
     <servers />
   </component>
@@ -197,10 +188,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="683" y="258" width="543" height="516" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602652161515" />
-    <state x="622" y="218" width="655" height="592" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602652424702">
+    <state x="622" y="218" width="655" height="592" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602652469612">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="622" y="218" width="655" height="592" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602652424702" />
+    <state x="622" y="218" width="655" height="592" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602652469612" />
     <state width="1282" height="553" key="GridCell.Tab.0.bottom" timestamp="1602415831150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -225,9 +216,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="535" y="233" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602652098346" />
-    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1602652405788">
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1602652644955">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602652405788" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602652644955" />
   </component>
 </project>

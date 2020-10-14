@@ -35,11 +35,11 @@ class RouteServiceProvider extends ServiceProvider
         /** @var User $user */
         $user = Auth::user();
 
-        switch ($user ?? null) {
+        switch ($user->level ?? null) {
             case User::LEVEL_REGULAR:
                 return route("user.deposit.index", $user);
             case User::LEVEL_ADMIN:
-                return route("user");
+                return route("user.index");
             default:
                 return null;
         }
