@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ReferralPath;
+use App\Models\Path;
 use App\Models\User;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
@@ -42,7 +42,7 @@ class UserController extends Controller
                     "name AS label",
                 ])->get(),
 
-            "graph_edges" => ReferralPath::query()
+            "graph_edges" => Path::query()
                 ->select([
                     "ancestor_id AS to",
                     "descendant_id AS from",

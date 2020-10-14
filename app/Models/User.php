@@ -48,7 +48,7 @@ class User extends Authenticatable
      */
     public function descendant_refs(): HasMany
     {
-        return $this->hasMany(ReferralPath::class, "ancestor_id");
+        return $this->hasMany(Path::class, "ancestor_id");
     }
 
     /**
@@ -56,7 +56,7 @@ class User extends Authenticatable
      */
     public function ancestor_refs(): HasMany
     {
-        return $this->hasMany(ReferralPath::class, "descendant_id");
+        return $this->hasMany(Path::class, "descendant_id");
     }
 
     /** Kedua anak dari user ini dalam urutan referral */
@@ -69,7 +69,7 @@ class User extends Authenticatable
     /** Orang tua dari user ini dalam urutan referral */
     public function parent_ref(): HasOne
     {
-        return $this->hasOne(ReferralPath::class, "descendant_id")
+        return $this->hasOne(Path::class, "descendant_id")
             ->where("tree_depth", 1);
     }
 
@@ -95,10 +95,12 @@ class User extends Authenticatable
     /** Sambungkan dua user */
     public static function attachDirectly($parent_id, $child_id)
     {
+        $paths_table = Path::query()->getModel()->getTable();
+
         DB::insert(
             "
-                    INSERT INTO referral_paths (ancestor_id, descendant_id, tree_depth, created_at, updated_at) (
-                        SELECT ancestor_id, ?, tree_depth + 1, NOW(), NOW() FROM referral_paths WHERE descendant_id = ?
+                    INSERT INTO $paths_table (ancestor_id, descendant_id, tree_depth, created_at, updated_at) (
+                        SELECT ancestor_id, ?, tree_depth + 1, NOW(), NOW() FROM $paths_table WHERE descendant_id = ?
                     )
                 ",
             [
@@ -106,7 +108,7 @@ class User extends Authenticatable
                 $parent_id,
             ]);
 
-        ReferralPath::query()->create([
+        Path::query()->create([
             "ancestor_id" => $child_id,
             "descendant_id" => $child_id,
             "tree_depth" => 0,

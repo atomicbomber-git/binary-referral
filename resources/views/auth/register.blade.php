@@ -8,7 +8,11 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <div class="alert alert-info">
+                        Anda mendaftar dengan menggunakan link referral dari akun milik <strong> {{ $referred_user->name }} </strong>
+                    </div>
+
+                    <form method="POST" action="{{ route('register', ["ref" => $referred_user->email]) }}">
                         @csrf
 
                         <div class="form-group row">

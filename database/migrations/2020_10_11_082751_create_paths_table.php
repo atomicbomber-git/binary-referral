@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReferralPathsTable extends Migration
+class CreatePathsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateReferralPathsTable extends Migration
      */
     public function up()
     {
-        Schema::create('referral_paths', function (Blueprint $table) {
+        Schema::create('paths', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('ancestor_id')->index();
@@ -36,6 +36,6 @@ class CreateReferralPathsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('referral_paths');
+        Schema::dropIfExists('paths');
     }
 }

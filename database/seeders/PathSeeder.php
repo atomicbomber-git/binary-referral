@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\ReferralPath;
+use App\Models\Path;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class ReferralSeeder extends Seeder
+class PathSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,7 +22,7 @@ class ReferralSeeder extends Seeder
         /** @var User $root */
         $root = User::query()->first();
 
-        ReferralPath::query()->create([
+        Path::query()->create([
             "ancestor_id" => $root->id,
             "descendant_id" => $root->id,
             "tree_depth" => 0,

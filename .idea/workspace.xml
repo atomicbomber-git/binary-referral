@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b6aec716-eb5e-4b43-9853-7e8a08a1a020" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Referral.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_10_14_182059_create_referrals_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/aa295325-2d4a-41f2-b9d4-cc5476b05e6e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/aa295325-2d4a-41f2-b9d4-cc5476b05e6e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ReferralPath.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Path.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_11_082751_create_referral_paths_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_11_082751_create_paths_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/ReferralSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/PathSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user-deposit/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user-deposit/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +184,7 @@
       <workItem from="1602430811555" duration="10169000" />
       <workItem from="1602463276629" duration="4797000" />
       <workItem from="1602548870994" duration="613000" />
-      <workItem from="1602651969510" duration="781000" />
+      <workItem from="1602651969510" duration="4733000" />
     </task>
     <servers />
   </component>
@@ -180,18 +195,26 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="455" y="77" width="1000" height="877" key="#Plugins" timestamp="1602670119914">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="455" y="77" width="1000" height="877" key="#Plugins/0.0.1920.1040@0.0.1920.1040" timestamp="1602670119914" />
     <state x="555" y="174" width="800" height="683" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602409224969">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="555" y="174" width="800" height="683" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602409224969" />
-    <state x="683" y="258" width="543" height="516" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602652161515">
+    <state x="683" y="258" width="543" height="516" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1602674373107">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="683" y="258" width="543" height="516" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602652161515" />
-    <state x="622" y="218" width="655" height="592" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602652469612">
+    <state x="683" y="258" width="543" height="516" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602674373107" />
+    <state x="622" y="218" width="655" height="592" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1602674190700">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="622" y="218" width="655" height="592" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602652469612" />
+    <state x="622" y="218" width="655" height="592" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602674190700" />
+    <state x="690" y="220" width="530" height="592" key="FileChooserDialogImpl" timestamp="1602652846435">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="220" width="530" height="592" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602652846435" />
     <state width="1282" height="553" key="GridCell.Tab.0.bottom" timestamp="1602415831150">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -212,13 +235,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="334" y="64" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1602438927933" />
-    <state x="535" y="233" key="run.anything.popup" timestamp="1602652098346">
+    <state x="535" y="233" key="run.anything.popup" timestamp="1602674447333">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="535" y="233" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602652098346" />
-    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1602652644955">
+    <state x="535" y="233" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602674447333" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1602674462907">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602652644955" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602674462907" />
   </component>
 </project>

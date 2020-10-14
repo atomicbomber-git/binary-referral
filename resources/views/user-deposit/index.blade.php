@@ -3,6 +3,17 @@
 @section("content")
     <h1> Your Deposits </h1>
 
+    <div class="alert alert-info">
+        <p>
+            Jika member baru mendaftar dengan akun dibawah, maka Anda akan mendapat bonus 10% dari nilai deposit pertama
+            mereka
+        </p>
+
+        <p class="font-weight-bold">
+            {{ route("register", ["ref" => \Illuminate\Support\Facades\Auth::user()->email])  }}
+        </p>
+    </div>
+
     <div class="card mb-3">
         <div class="card-header">
             Add Deposit
