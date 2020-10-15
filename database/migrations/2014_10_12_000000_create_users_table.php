@@ -20,9 +20,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('level')->index();
-            $table->boolean('is_root')
-            ->default(0)
+            $table->boolean('is_root')->default(0)
                 ->index();
+
+            $table->decimal(19, 4, 'deposit_amount')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

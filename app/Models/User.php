@@ -19,6 +19,12 @@ class User extends Authenticatable
     const LEVEL_ADMIN = "admin";
     const LEVEL_REGULAR = "regular";
 
+    const DEPOSIT_TYPES = [
+        "A" => 100,
+        "B" => 200,
+        "C" => 300,
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

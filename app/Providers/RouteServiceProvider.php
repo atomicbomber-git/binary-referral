@@ -37,7 +37,7 @@ class RouteServiceProvider extends ServiceProvider
 
         switch ($user->level ?? null) {
             case User::LEVEL_REGULAR:
-                return route("user.deposit.index", $user);
+                return route("user.home", $user);
             case User::LEVEL_ADMIN:
                 return route("user.index");
             default:
