@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Path;
+use App\Models\User;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +20,19 @@ class UserSeeder extends Seeder
     {
         DB::beginTransaction();
 
+        // Create root user
+        $root_user = UserFactory::new()
+            ->regular()
+            ->root()
+            ->create();
+
+        Path::query()->create([
+            "ancestor_id" => $root_user->id,
+            "descendant_id" => $root_user->id,
+            "tree_depth" => 0,
+        ]);
+
+        // Create regular users
         UserFactory::new()
             ->regular()
             ->create([
@@ -27,7 +42,7 @@ class UserSeeder extends Seeder
 
         UserFactory::new()
             ->regular()
-            ->count(1000)
+//            ->count(1000)
             ->create();
 
         DB::commit();

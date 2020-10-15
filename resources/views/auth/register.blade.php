@@ -8,11 +8,13 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <div class="alert alert-info">
-                        Anda mendaftar dengan menggunakan link referral dari akun milik <strong> {{ $referred_user->name }} </strong>
-                    </div>
+                    @if($referred_user !== null)
+                        <div class="alert alert-info">
+                            Anda mendaftar dengan menggunakan link referral dari akun milik <strong> {{ $referred_user->name }} </strong>
+                        </div>
+                    @endif
 
-                    <form method="POST" action="{{ route('register', ["ref" => $referred_user->email]) }}">
+                    <form method="POST" action="{{ route('register', ["ref" => $referred_user->email ?? null]) }}">
                         @csrf
 
                         <div class="form-group row">

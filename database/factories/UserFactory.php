@@ -44,4 +44,11 @@ class UserFactory extends Factory
             "level" => User::LEVEL_REGULAR,
         ]);
     }
+
+    public function root()
+    {
+        return $this->state([
+            "is_root" => 1,
+        ]);
+    }
 }

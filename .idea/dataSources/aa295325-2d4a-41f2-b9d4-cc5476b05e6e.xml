@@ -1361,29 +1361,43 @@ descendant_id</ColNames>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="402" parent="343" name="remember_token">
+    <column id="402" parent="343" name="is_root">
       <Position>7</Position>
+      <DataType>tinyint(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
+    </column>
+    <column id="403" parent="343" name="remember_token">
+      <Position>8</Position>
       <DataType>varchar(100)|0s</DataType>
     </column>
-    <column id="403" parent="343" name="created_at">
-      <Position>8</Position>
-      <DataType>timestamp|0s</DataType>
-    </column>
-    <column id="404" parent="343" name="updated_at">
+    <column id="404" parent="343" name="created_at">
       <Position>9</Position>
       <DataType>timestamp|0s</DataType>
     </column>
-    <index id="405" parent="343" name="users_email_unique">
+    <column id="405" parent="343" name="updated_at">
+      <Position>10</Position>
+      <DataType>timestamp|0s</DataType>
+    </column>
+    <index id="406" parent="343" name="users_email_unique">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="406" parent="343" name="PRIMARY">
+    <index id="407" parent="343" name="users_level_index">
+      <ColNames>level</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="408" parent="343" name="users_is_root_index">
+      <ColNames>is_root</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="409" parent="343" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="407" parent="343" name="users_email_unique">
+    <key id="410" parent="343" name="users_email_unique">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>users_email_unique</UnderlyingIndexName>
     </key>

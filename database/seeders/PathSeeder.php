@@ -19,14 +19,9 @@ class PathSeeder extends Seeder
     {
         DB::beginTransaction();
 
-        /** @var User $root */
-        $root = User::query()->first();
-
-        Path::query()->create([
-            "ancestor_id" => $root->id,
-            "descendant_id" => $root->id,
-            "tree_depth" => 0,
-        ]);
+        $root = User::query()
+            ->where("is_root", 1)
+            ->first();
 
         Collection::times(200, function () use ($root) {
             $parent = $root->nextEligibleDescendant();
@@ -36,6 +31,10 @@ class PathSeeder extends Seeder
                 ->whereDoesntHave("ancestor_refs")
                 ->whereDoesntHave("descendant_refs")
                 ->first();
+
+            if ($child === null) {
+                return;
+            }
 
             User::attachDirectly(
                 $parent->id,

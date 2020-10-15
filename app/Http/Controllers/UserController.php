@@ -39,7 +39,7 @@ class UserController extends Controller
                 ->has("ancestor_refs")
                 ->select([
                     "id",
-                    "name AS label",
+                    DB::raw("CONCAT(name, ' (', id, ')')  AS label"),
                 ])->get(),
 
             "graph_edges" => Path::query()

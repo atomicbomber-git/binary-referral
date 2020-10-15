@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Path extends Model
 {
     use HasFactory;
+    protected $guarded = [];
 
     public function direct_child_paths(): HasMany
     {

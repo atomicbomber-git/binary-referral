@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Deposit;
+use App\Models\Path;
 use App\Models\Referral;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -62,7 +64,7 @@ class RegisterController extends Controller
 
         $user = User::query()
             ->where("email", $referred_user_email)
-            ->firstOrFail();
+            ->first();
 
         return view('auth.register', [
             "referred_user" => $user,
@@ -74,6 +76,7 @@ class RegisterController extends Controller
         $data = $this->validator($request->all())->validate();
 
         // Cek user sumber link referral
+        /** @var User $referred_user */
         $referred_user = User::query()
             ->where("email", $request->query("ref"))
             ->first();
@@ -125,12 +128,37 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::query()->create([
+        // Cek apakah sudah terdapat user biasa yang sudah terletak dalam tree
+        /** @var User $root_user */
+        $root_user = User::query()
+            ->where("level", User::LEVEL_REGULAR)
+            ->where("is_root", 1)
+            ->first();
+
+        $user = User::query()->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'level' => User::LEVEL_REGULAR,
+            'is_root' => $root_user ? 0: 1
         ]);
+
+        if (!$root_user) {
+            Path::query()->create([
+                "ancestor_id" => $user->id,
+                "descendant_id" => $user->id,
+                "tree_depth" => 0,
+            ]);
+        } else {
+            $parent = $root_user->nextEligibleDescendant();
+
+            User::attachDirectly(
+                $parent->id,
+                $user->id,
+            );
+        }
+
+        return $user;
     }
 
     public function redirectPath()
