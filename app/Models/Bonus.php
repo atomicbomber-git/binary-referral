@@ -9,6 +9,8 @@ class Bonus extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     const TYPE_REFERRAL = "referral";
     const TYPE_UPLINK = "uplink";
 }

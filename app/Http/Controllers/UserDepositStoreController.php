@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bonus;
 use App\Models\User;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,10 +38,10 @@ class UserDepositStoreController extends Controller
             ->first();
 
         // Berikan bonus 10% jika sumber referral telah melakukan deposit
-        if ( ! ($referred_user->deposit_amount ?? false)) {
+        if ($referred_user->deposit_amount ?? false) {
             $referred_user->bonuses()->create([
                 "type" => Bonus::TYPE_REFERRAL,
-                "amount" => $data["deposit_amount"] * 0.1,
+                "amount" => User::DEPOSIT_TYPES[$data["deposit_type"]] * 0.1,
             ]);
         }
 

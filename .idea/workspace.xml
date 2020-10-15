@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6aec716-eb5e-4b43-9853-7e8a08a1a020" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/Bonus.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserDepositStoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserDepositStoreController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Referral.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Referral.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_12_080212_create_deposits_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_15_120322_create_bonuses_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_10_14_182059_create_referrals_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_10_15_120323_create_referrals_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/PathSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/PathSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user-home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user-home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/index.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="b6aec716-eb5e-4b43-9853-7e8a08a1a020" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -191,7 +176,7 @@
       <workItem from="1602430811555" duration="10169000" />
       <workItem from="1602463276629" duration="4797000" />
       <workItem from="1602548870994" duration="613000" />
-      <workItem from="1602651969510" duration="16425000" />
+      <workItem from="1602651969510" duration="16941000" />
     </task>
     <servers />
   </component>
@@ -246,9 +231,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="535" y="233" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602674447333" />
-    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1602740751680">
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1602740939335">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602740751680" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602740939335" />
   </component>
 </project>
