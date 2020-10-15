@@ -25,14 +25,17 @@ class UserController extends Controller
      */
     public function index()
     {
+
+
         return $this->responseFactory->view("user.index", [
             "users" => User::query()
                 ->orderBy("id")
                 ->with([
-                    "parent_ref.parent_user",
-                    "children_refs.child_user",
+                    "parent_ref.ancestor",
+                    "children_refs.descendant",
                 ])
                 ->paginate(),
+
 
             "graph_nodes" => User::query()
                 ->has("descendant_refs")
@@ -40,6 +43,7 @@ class UserController extends Controller
                 ->select([
                     "id",
                     DB::raw("CONCAT(name, ' (', id, ')')  AS label"),
+                    DB::raw("IF(deposited_at IS NOT NULL, '#A2FFF7', '#FFAFA3') AS color"),
                 ])->get(),
 
             "graph_edges" => Path::query()

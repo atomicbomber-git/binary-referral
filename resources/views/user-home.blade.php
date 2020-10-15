@@ -4,7 +4,7 @@
     <h1> Home </h1>
 
     @if($user->deposit_amount === null)
-        <div class="card">
+        <div class="card my-2">
             <div class="card-body">
                 <div class="alert alert-warning">
                     Anda belum melakukan deposit, silahkan pilih tipe deposit Anda disini:
@@ -48,7 +48,7 @@
     @endif
 
     @if($user->deposit_amount !== null)
-        <div class="alert alert-success">
+        <div class="alert alert-success my-2">
             <p>
                 Anda telah melakukan deposit dengan besaran <strong>{{ number_format($user->deposit_amount) }}</strong>.
             </p>
@@ -61,4 +61,44 @@
             </p>
         </div>
     @endif
+
+    <h2> Daftar Bonus </h2>
+
+    <div>
+        @if($bonuses->isNotEmpty())
+            <div class="table-responsive">
+                <table class="table table-sm table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th> # </th>
+                            <th> Tipe </th>
+                            <th> Jumlah  </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach ($bonuses as $bonus)
+                        <tr>
+                            <td> {{ $bonuses->firstItem() + $loop->index }} </td>
+                            <td> {{ $bonus->type }} </td>
+                            <td> {{ $bonus->amount }} </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                {{ $bonuses->links() }}
+            </div>
+
+        @else
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                {{ __("messages.errors.no_data") }}
+            </div>
+        @endif
+    </div>
+
+
 @endsection

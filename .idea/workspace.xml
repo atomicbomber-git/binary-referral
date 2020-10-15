@@ -5,15 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6aec716-eb5e-4b43-9853-7e8a08a1a020" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/UsedUplinkBonus.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_10_15_223811_create_used_uplink_bonuses_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserDepositStoreController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserDepositStoreController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserHomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserHomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Bonus.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Bonus.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Path.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Path.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/PathSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/PathSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user-home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user-home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +189,7 @@
       <workItem from="1602430811555" duration="10169000" />
       <workItem from="1602463276629" duration="4797000" />
       <workItem from="1602548870994" duration="613000" />
-      <workItem from="1602651969510" duration="25850000" />
+      <workItem from="1602651969510" duration="27965000" />
     </task>
     <servers />
   </component>
@@ -249,9 +252,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="535" y="233" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602674447333" />
-    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1602776596363">
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup" timestamp="1602778875703">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602776596363" />
+    <state x="539" y="5" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602778875703" />
   </component>
 </project>

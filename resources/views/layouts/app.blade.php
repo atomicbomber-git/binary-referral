@@ -30,7 +30,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @if(\Illuminate\Support\Facades\Auth::user()->level ?? null === \App\Models\User::LEVEL_REGULAR)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.home', \Illuminate\Support\Facades\Auth::user()) }}">
+                                    Home
+                                </a>
+                            </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

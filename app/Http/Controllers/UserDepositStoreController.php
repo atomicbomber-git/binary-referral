@@ -48,10 +48,17 @@ class UserDepositStoreController extends Controller
             ]);
         }
 
+        // Kandidat pemberian bonus kaki 5%
         $parents = $user
             ->ancestor_refs()
             ->select("ancestor_id", "descendant_id", "tree_depth")
             ->whereColumn("ancestor_id", "<>", "descendant_id")
+
+            // Hanya yang sudah deposit yang dijadikan kandidat
+            ->whereHas("ancestor", function (Builder $builder) {
+               $builder->whereNotNull("deposited_at");
+            })
+
             ->orderByDesc("tree_depth")
             ->addSelect([
                 "depositor_id" =>
@@ -95,9 +102,16 @@ class UserDepositStoreController extends Controller
             Bonus::query()->create([
                 "type" => Bonus::TYPE_UPLINK,
                 "user_id" => $parent->ancestor_id,
-                "amount" => $parent->depositor->deposit_amount * 5.0 / 100,
+                "amount" => $user->deposited_amount * 5.0 / 100,
             ]);
 
+            // Kaki sisi user yang melakukan deposit sekarang
+            UsedUplinkBonus::query()->create([
+                "uplink_id" => $parent->ancestor_id,
+                "user_id" => $user->id,
+            ]);
+
+            // Kaki sisi lain
             UsedUplinkBonus::query()->create([
                 "uplink_id" => $parent->ancestor_id,
                 "user_id" => $parent->depositor_id,

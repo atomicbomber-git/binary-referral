@@ -94,6 +94,7 @@ class User extends Authenticatable
     {
         /** @var User $candidate */
         $candidate = self::query()
+            ->where("level", self::LEVEL_REGULAR)
             ->whereHas("ancestor_refs", function ($query) {
                 $query->where("ancestor_id", $this->id);
             })

@@ -12,20 +12,14 @@ class Path extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function direct_child_paths(): HasMany
-    {
-        return $this->hasMany(self::class, "ancestor_id")
-            ->where("tree_depth", 1);
-    }
-
-    public function child_user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, "descendant_id");
-    }
-
-    public function parent_user()
+    public function ancestor()
     {
         return $this->belongsTo(User::class, "ancestor_id");
+    }
+
+    public function descendant()
+    {
+        return $this->belongsTo(User::class, "descendant_id");
     }
 
     public function depositor()

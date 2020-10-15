@@ -22,7 +22,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
-        $deposit_amount = $this->faker->optional(0.75)->passthrough(
+        $deposit_amount = $this->faker->optional(0.4)->passthrough(
             $this->faker->randomElement(array_values(User::DEPOSIT_TYPES))
         );
 

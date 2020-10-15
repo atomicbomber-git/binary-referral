@@ -27,6 +27,7 @@ class PathSeeder extends Seeder
             $parent = $root->nextEligibleDescendant();
 
             $child = User::query()
+                ->where("level", User::LEVEL_REGULAR)
                 ->where("id", "<>", $parent->id)
                 ->whereDoesntHave("ancestor_refs")
                 ->whereDoesntHave("descendant_refs")

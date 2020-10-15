@@ -22,6 +22,7 @@ class UserHomeController extends Controller
         return view("user-home", [
             "user" => $user,
             "deposit_types" => User::DEPOSIT_TYPES,
+            "bonuses" => $user->bonuses()->paginate()
         ]);
     }
 }
