@@ -22,15 +22,22 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $deposit_amount = $this->faker->optional(0.75)->passthrough(
+            $this->faker->randomElement(array_values(User::DEPOSIT_TYPES))
+        );
+
+        $deposited_at = $deposit_amount !== null ?
+            now()->addMinutes(rand(10, 100)) :
+            null;
+
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'deposit_amount' => $this->faker->optional(0.75)->passthrough(
-                $this->faker->randomElement(array_values(User::DEPOSIT_TYPES))
-            )
+            'deposit_amount' => $deposit_amount,
+            'deposited_at' => $deposited_at,
         ];
     }
 

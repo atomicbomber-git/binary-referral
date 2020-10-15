@@ -27,4 +27,9 @@ class Path extends Model
     {
         return $this->belongsTo(User::class, "ancestor_id");
     }
+
+    public function depositor()
+    {
+        return $this->belongsTo(User::class, "depositor_id");
+    }
 }

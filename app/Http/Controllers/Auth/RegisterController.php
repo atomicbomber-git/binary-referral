@@ -136,6 +136,9 @@ class RegisterController extends Controller
             ->first();
 
         DB::beginTransaction();
+//
+//        User::query()
+//            ->whereColumn()
 
         $user = User::query()->create([
             'name' => $data['name'],

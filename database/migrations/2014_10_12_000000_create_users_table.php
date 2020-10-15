@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
                 ->index();
 
             $table->decimal('deposit_amount', 19, 4)->nullable();
+            $table->dateTime('deposited_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
