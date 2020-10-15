@@ -44,9 +44,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function deposits(): HasMany
+    public function bonuses(): HasMany
     {
-        return $this->hasMany(Deposit::class);
+        return $this->hasMany(Bonus::class);
+    }
+
+    public function referrals(): HasMany
+    {
+        return $this->hasMany(Referral::class, "referral_source_id");
+    }
+
+    public function referrer(): HasOne
+    {
+        return $this->hasOne(Referral::class);
     }
 
     /**

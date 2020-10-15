@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_root')->default(0)
                 ->index();
 
-            $table->decimal(19, 4, 'deposit_amount')->nullable();
+            $table->decimal('deposit_amount', 19, 4)->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

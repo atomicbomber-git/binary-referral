@@ -23,7 +23,7 @@ class PathSeeder extends Seeder
             ->where("is_root", 1)
             ->first();
 
-        Collection::times(200, function () use ($root) {
+        Collection::times(1000, function () use ($root) {
             $parent = $root->nextEligibleDescendant();
 
             $child = User::query()

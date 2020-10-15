@@ -32,8 +32,9 @@
                         <th> # </th>
                         <th> Name </th>
                         <th> E-Mail </th>
-                        <th> Referred By (Parent) </th>
-                        <th> Referrals (Children) </th>
+                        <th> Parent </th>
+                        <th> Children </th>
+                        <th> Deposit </th>
                         <th> Controls </th>
                     </tr>
                     </thead>
@@ -46,6 +47,7 @@
                             <td> {{ $user->email  }} </td>
                             <td> {{ $user->parent_ref->parent_user->name ?? "-" }} </td>
                             <td> {{ implode(", ", $user->children_refs->pluck("child_user.name")->toArray() ?? []) }} </td>
+                            <td> {{ $user->deposit_amount ? number_format($user->deposit_amount) : null }} </td>
                             <td>
                                 <form action="{{ route("user.destroy", $user) }}"
                                       method="POST"

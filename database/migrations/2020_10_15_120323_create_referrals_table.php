@@ -22,6 +22,10 @@ class CreateReferralsTable extends Migration
             $table->unsignedBigInteger('user_id')->unique();
             $table->foreign('user_id')->references('id')->on('users');
 
+            $table->foreignId("bonus_id")
+                ->nullable()
+                ->constrained();
+
             $table->timestamps();
         });
     }

@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
 
         UserFactory::new()
             ->regular()
-//            ->count(1000)
+            ->count(64)
             ->create();
 
         DB::commit();

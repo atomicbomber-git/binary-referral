@@ -46,4 +46,19 @@
             </div>
         </div>
     @endif
+
+    @if($user->deposit_amount !== null)
+        <div class="alert alert-success">
+            <p>
+                Anda telah melakukan deposit dengan besaran <strong>{{ number_format($user->deposit_amount) }}</strong>.
+            </p>
+
+            <p>
+                Link referral Anda adalah
+                <a class="font-weight-bold" href="{{ route("register", ["ref" => $user->email]) }}">
+                    {{ route("register", ["ref" => $user->email]) }}
+                </a>
+            </p>
+        </div>
+    @endif
 @endsection

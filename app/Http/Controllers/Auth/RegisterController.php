@@ -135,21 +135,25 @@ class RegisterController extends Controller
             ->where("is_root", 1)
             ->first();
 
+        DB::beginTransaction();
+
         $user = User::query()->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'level' => User::LEVEL_REGULAR,
-            'is_root' => $root_user ? 0: 1
+            'is_root' => $root_user ? 0 : 1
         ]);
 
         if (!$root_user) {
+            // Daftarkan user sebagai root
             Path::query()->create([
                 "ancestor_id" => $user->id,
                 "descendant_id" => $user->id,
                 "tree_depth" => 0,
             ]);
         } else {
+            // Cari user yang kakinya masih kosong dan daftarkan user baru sebagai salah satu kakinya
             $parent = $root_user->nextEligibleDescendant();
 
             User::attachDirectly(
@@ -157,6 +161,8 @@ class RegisterController extends Controller
                 $user->id,
             );
         }
+
+        DB::commit();
 
         return $user;
     }
