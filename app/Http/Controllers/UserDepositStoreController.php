@@ -73,20 +73,24 @@ class UserDepositStoreController extends Controller
                         )
                         ->whereIn(
                             "id",
-                            Path::query()->from(DB::raw("paths sub_1"))
-                                ->select("sub_1.descendant_id")
-                                ->whereColumn("sub_1.ancestor_id", "<>", "sub_1.descendant_id")
-                                ->whereIn(
-                                    "sub_1.ancestor_id",
-                                    Path::query()->from(DB::raw("paths sub_2"))
-                                        ->selectRaw("sub_2.descendant_id")
-                                        ->whereColumn("sub_2.ancestor_id", "paths.ancestor_id")
-                                        ->whereNotIn("sub_2.descendant_id",
-                                            Path::query()->from(DB::raw("paths sub_3"))
-                                                ->select("sub_3.ancestor_id")
-                                                ->whereColumn("sub_3.descendant_id", "paths.descendant_id")
-                                        )
-                                        ->where("sub_2.tree_depth", 1)
+                            Path::query()->from(DB::raw("paths as sub_1"))
+                                ->select("descendant_id")
+
+                                ->whereColumn("sub_1.descendant_id", "<>", "sub_1.ancestor_id")
+                                ->whereColumn("sub_1.ancestor_id", "=", "paths.ancestor_id")
+
+                                ->whereNotIn(
+                                    "sub_1.descendant_id",
+                                    Path::query()->from(DB::raw("paths as sub_2"))
+                                        ->select("sub_2.ancestor_id")
+                                        ->whereColumn("paths.descendant_id", "=", "sub_2.descendant_id")
+                                )
+
+                                ->whereNotIn(
+                                    "sub_1.descendant_id",
+                                    Path::query()->from(DB::raw("paths as sub_2"))
+                                        ->select("sub_2.descendant_id")
+                                        ->whereColumn("paths.descendant_id", "=", "sub_2.ancestor_id")
                                 )
                         )
                         ->limit(1),
@@ -102,7 +106,7 @@ class UserDepositStoreController extends Controller
             Bonus::query()->create([
                 "type" => Bonus::TYPE_UPLINK,
                 "user_id" => $parent->ancestor_id,
-                "amount" => $user->deposited_amount * 5.0 / 100,
+                "amount" => $user->deposit_amount * 5.0 / 100,
             ]);
 
             // Kaki sisi user yang melakukan deposit sekarang
