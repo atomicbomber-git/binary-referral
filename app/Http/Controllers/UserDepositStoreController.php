@@ -68,7 +68,7 @@ class UserDepositStoreController extends Controller
                         ->orderBy("deposited_at")
                         ->whereNotIn("id",
                             UsedUplinkBonus::query()
-                                ->select("used_uplink_bonuses.id")
+                                ->select("used_uplink_bonuses.user_id")
                                 ->whereColumn("used_uplink_bonuses.uplink_id", "paths.ancestor_id")
                         )
                         ->whereIn(
