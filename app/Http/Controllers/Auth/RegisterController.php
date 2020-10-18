@@ -92,6 +92,29 @@ class RegisterController extends Controller
             ]);
         }
 
+        /** @var User $root_user */
+        $root_user = User::query()
+            ->where("level", User::LEVEL_REGULAR)
+            ->where("is_root", 1)
+            ->first();
+
+        if ($root_user === null) {
+            // Daftarkan user sebagai root
+            Path::query()->create([
+                "ancestor_id" => $user->id,
+                "descendant_id" => $user->id,
+                "tree_depth" => 0,
+            ]);
+        } else {
+            // Cari user yang kakinya masih kosong dan daftarkan user baru sebagai salah satu kakinya
+            $parent = ($referred_user ?? $root_user)->nextEligibleDescendant();
+
+            User::attachDirectly(
+                $parent->id,
+                $user->id,
+            );
+        }
+
         DB::commit();
 
         $this->guard()->login($user);
@@ -136,9 +159,6 @@ class RegisterController extends Controller
             ->first();
 
         DB::beginTransaction();
-//
-//        User::query()
-//            ->whereColumn()
 
         $user = User::query()->create([
             'name' => $data['name'],
@@ -147,23 +167,6 @@ class RegisterController extends Controller
             'level' => User::LEVEL_REGULAR,
             'is_root' => $root_user ? 0 : 1
         ]);
-
-        if (!$root_user) {
-            // Daftarkan user sebagai root
-            Path::query()->create([
-                "ancestor_id" => $user->id,
-                "descendant_id" => $user->id,
-                "tree_depth" => 0,
-            ]);
-        } else {
-            // Cari user yang kakinya masih kosong dan daftarkan user baru sebagai salah satu kakinya
-            $parent = $root_user->nextEligibleDescendant();
-
-            User::attachDirectly(
-                $parent->id,
-                $user->id,
-            );
-        }
 
         DB::commit();
 
