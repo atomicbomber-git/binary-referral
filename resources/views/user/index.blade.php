@@ -29,12 +29,19 @@
                 <table class="table table-sm table-striped table-hover">
                     <thead>
                     <tr>
-                        <th> # </th>
+                        <th> ID </th>
                         <th> Name </th>
                         <th> E-Mail </th>
                         <th> Parent </th>
                         <th> Children </th>
                         <th> Deposit </th>
+
+                        <th> Total Anak Kiri </th>
+                        <th> Total Anak Kanan </th>
+
+                        <th> Total Deposit Kiri </th>
+                        <th> Total Deposit Kanan </th>
+
                         <th> Controls </th>
                     </tr>
                     </thead>
@@ -42,12 +49,19 @@
                     <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            <td> {{ $users->firstItem() + $loop->index }} </td>
+                            <td> {{ $user->id }} </td>
                             <td> {{ $user->name  }} </td>
                             <td> {{ $user->email  }} </td>
                             <td> {{ $user->parent_ref->ancestor->name ?? "-" }} </td>
                             <td> {{ implode(", ", $user->children_refs->pluck("descendant.name")->toArray() ?? []) }} </td>
                             <td> {{ $user->deposit_amount ? number_format($user->deposit_amount) : null }} </td>
+
+                            <td> {{ $user->left_descendant_count }} </td>
+                            <td> {{ $user->right_descendant_count }} </td>
+                            <td> {{ $user->left_deposit_total }} </td>
+                            <td> {{ $user->right_deposit_total }} </td>
+
+
                             <td>
                                 <form action="{{ route("user.destroy", $user) }}"
                                       method="POST"

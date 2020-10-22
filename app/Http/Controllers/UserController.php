@@ -25,6 +25,106 @@ class UserController extends Controller
      */
     public function index()
     {
+        User::query()
+            ->select("id", "name")
+            ->addSelect([
+                "left_child" => Path::query()
+                    ->select("paths.descendant_id")
+                    ->whereColumn("paths.ancestor_id", "=", "users.id")
+                    ->where("tree_depth", 1)
+                    ->orderBy("id")
+                    ->limit(1),
+
+                "right_child" => Path::query()->from(DB::raw("paths paths_rc"))
+                    // Anak di sisi kanan hanya ada jika orang tuanya memiliki > 1 anak
+                    ->where(
+                        Path::query()->from(DB::raw("paths paths_sub"))
+                            ->selectRaw("COUNT(*)")
+                            ->whereColumn("paths_sub.ancestor_id", "=", "users.id")
+                            ->where("tree_depth", 1)
+                        , ">", 1)
+
+                    ->select("paths_rc.descendant_id")
+                    ->whereColumn("paths_rc.ancestor_id", "=", "users.id")
+                    ->where("tree_depth", 1)
+
+                    // Anak di sisi kiri adalah anak yang id nya lebih besar daripada anak lain
+                    ->orderByDesc("id")
+                    ->limit(1),
+
+                "left_descendant_count" =>
+                    Path::query()
+                        ->selectRaw("COUNT(*)")
+                        ->whereIn(
+                            "ancestor_id",
+                            Path::query()
+                                ->selectRaw("MIN(paths.descendant_id)")
+                                ->whereColumn("paths.ancestor_id", "=", "users.id")
+                                ->where("tree_depth", 1)
+                        ),
+
+                "right_descendant_count" =>
+                    Path::query()
+                        ->selectRaw("COUNT(*)")
+                        ->whereIn(
+                            "ancestor_id",
+                            Path::query()->from(DB::raw("paths paths_rdc"))
+                                ->selectRaw("MAX(paths_rdc.descendant_id)")
+
+                                // Anak di sisi kanan hanya ada jika orang tuanya memiliki > 1 anak
+                                ->where(
+                                    Path::query()->from(DB::raw("paths paths_sub"))
+                                        ->selectRaw("COUNT(*)")
+                                        ->whereColumn("paths_sub.ancestor_id", "=", "users.id")
+                                        ->where("tree_depth", 1)
+                                    , ">", 1)
+
+                                ->whereColumn("paths_rdc.ancestor_id", "=", "users.id")
+                                ->where("tree_depth", 1)
+                        ),
+
+                "left_deposit_total" => User::query()->from(DB::raw("users users_lds"))
+                    ->selectRaw("SUM(users_lds.deposit_amount)")
+                    ->whereIn(
+                        "id",
+                        Path::query()
+                            ->select("paths.descendant_id")
+                            ->whereIn(
+                                "ancestor_id",
+                                Path::query()
+                                    ->selectRaw("MIN(paths.descendant_id)")
+                                    ->whereColumn("paths.ancestor_id", "=", "users.id")
+                                    ->where("tree_depth", 1)
+                            )
+                    ),
+
+                "right_deposit_total" => User::query()->from(DB::raw("users users_rds"))
+                    ->selectRaw("SUM(users_rds.deposit_amount)")
+                    ->whereIn(
+                        "id",
+                        Path::query()
+                            ->selectRaw("paths.descendant_id")
+                            ->whereIn(
+                                "ancestor_id",
+                                Path::query()->from(DB::raw("paths paths_rdc"))
+                                    ->selectRaw("MAX(paths_rdc.descendant_id)")
+
+                                    // Anak di sisi kanan hanya ada jika orang tuanya memiliki > 1 anak
+                                    ->where(
+                                        Path::query()->from(DB::raw("paths paths_sub"))
+                                            ->selectRaw("COUNT(*)")
+                                            ->whereColumn("paths_sub.ancestor_id", "=", "users.id")
+                                            ->where("tree_depth", 1)
+                                        , ">", 1)
+
+                                    ->whereColumn("paths_rdc.ancestor_id", "=", "users.id")
+                                    ->where("tree_depth", 1)
+                            )
+                    ),
+            ])
+
+            ->limit(10)
+            ->get();
 
 
         return $this->responseFactory->view("user.index", [
@@ -34,15 +134,109 @@ class UserController extends Controller
                     "parent_ref.ancestor",
                     "children_refs.descendant",
                 ])
-                ->paginate(),
+                ->addSelect([
+                    "left_child" => Path::query()
+                        ->select("paths.descendant_id")
+                        ->whereColumn("paths.ancestor_id", "=", "users.id")
+                        ->where("tree_depth", 1)
+                        ->orderBy("id")
+                        ->limit(1),
 
+                    "right_child" => Path::query()->from(DB::raw("paths paths_rc"))
+                        // Anak di sisi kanan hanya ada jika orang tuanya memiliki > 1 anak
+                        ->where(
+                            Path::query()->from(DB::raw("paths paths_sub"))
+                                ->selectRaw("COUNT(*)")
+                                ->whereColumn("paths_sub.ancestor_id", "=", "users.id")
+                                ->where("tree_depth", 1)
+                            , ">", 1)
+
+                        ->select("paths_rc.descendant_id")
+                        ->whereColumn("paths_rc.ancestor_id", "=", "users.id")
+                        ->where("tree_depth", 1)
+
+                        // Anak di sisi kiri adalah anak yang id nya lebih besar daripada anak lain
+                        ->orderByDesc("id")
+                        ->limit(1),
+
+                    "left_descendant_count" =>
+                        Path::query()
+                            ->selectRaw("COUNT(*)")
+                            ->whereIn(
+                                "ancestor_id",
+                                Path::query()
+                                    ->selectRaw("MIN(paths.descendant_id)")
+                                    ->whereColumn("paths.ancestor_id", "=", "users.id")
+                                    ->where("tree_depth", 1)
+                            ),
+
+                    "right_descendant_count" =>
+                        Path::query()
+                            ->selectRaw("COUNT(*)")
+                            ->whereIn(
+                                "ancestor_id",
+                                Path::query()->from(DB::raw("paths paths_rdc"))
+                                    ->selectRaw("MAX(paths_rdc.descendant_id)")
+
+                                    // Anak di sisi kanan hanya ada jika orang tuanya memiliki > 1 anak
+                                    ->where(
+                                        Path::query()->from(DB::raw("paths paths_sub"))
+                                            ->selectRaw("COUNT(*)")
+                                            ->whereColumn("paths_sub.ancestor_id", "=", "users.id")
+                                            ->where("tree_depth", 1)
+                                        , ">", 1)
+
+                                    ->whereColumn("paths_rdc.ancestor_id", "=", "users.id")
+                                    ->where("tree_depth", 1)
+                            ),
+
+                    "left_deposit_total" => User::query()->from(DB::raw("users users_lds"))
+                        ->selectRaw("SUM(users_lds.deposit_amount)")
+                        ->whereIn(
+                            "id",
+                            Path::query()
+                                ->select("paths.descendant_id")
+                                ->whereIn(
+                                    "ancestor_id",
+                                    Path::query()
+                                        ->selectRaw("MIN(paths.descendant_id)")
+                                        ->whereColumn("paths.ancestor_id", "=", "users.id")
+                                        ->where("tree_depth", 1)
+                                )
+                        ),
+
+                    "right_deposit_total" => User::query()->from(DB::raw("users users_rds"))
+                        ->selectRaw("SUM(users_rds.deposit_amount)")
+                        ->whereIn(
+                            "id",
+                            Path::query()
+                                ->selectRaw("paths.descendant_id")
+                                ->whereIn(
+                                    "ancestor_id",
+                                    Path::query()->from(DB::raw("paths paths_rdc"))
+                                        ->selectRaw("MAX(paths_rdc.descendant_id)")
+
+                                        // Anak di sisi kanan hanya ada jika orang tuanya memiliki > 1 anak
+                                        ->where(
+                                            Path::query()->from(DB::raw("paths paths_sub"))
+                                                ->selectRaw("COUNT(*)")
+                                                ->whereColumn("paths_sub.ancestor_id", "=", "users.id")
+                                                ->where("tree_depth", 1)
+                                            , ">", 1)
+
+                                        ->whereColumn("paths_rdc.ancestor_id", "=", "users.id")
+                                        ->where("tree_depth", 1)
+                                )
+                        ),
+                ])
+                ->paginate(30),
 
             "graph_nodes" => User::query()
                 ->has("descendant_refs")
                 ->has("ancestor_refs")
                 ->select([
                     "id",
-                    DB::raw("CONCAT(name, ' (', id, ')')  AS label"),
+                    DB::raw("CONCAT(name, ' (', id, ')', 'DEP: ', COALESCE(deposit_amount, ''))  AS label"),
                     DB::raw("IF(deposited_at IS NOT NULL, '#A2FFF7', '#FFAFA3') AS color"),
                 ])->get(),
 
