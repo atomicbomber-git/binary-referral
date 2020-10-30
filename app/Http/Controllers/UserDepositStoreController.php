@@ -56,44 +56,42 @@ class UserDepositStoreController extends Controller
 
             // Hanya yang sudah deposit yang dijadikan kandidat
             ->whereHas("ancestor", function (Builder $builder) {
-               $builder->whereNotNull("deposited_at");
+                $builder->whereNotNull("deposited_at");
             })
-
             ->orderByDesc("tree_depth")
             ->addSelect([
-                "depositor_id" =>
-                    User::query()
-                        ->select("id")
-                        ->whereNotNull("deposit_amount")
-                        ->orderBy("deposited_at")
-                        ->whereNotIn("id",
-                            UsedUplinkBonus::query()
-                                ->select("used_uplink_bonuses.user_id")
-                                ->whereColumn("used_uplink_bonuses.uplink_id", "paths.ancestor_id")
-                        )
-                        ->whereIn(
-                            "id",
-                            Path::query()->from(DB::raw("paths as sub_1"))
-                                ->select("descendant_id")
+                "depositor_id" => User::query()->from(\DB::raw("users user_sub"))
+                    ->select("user_sub.id")
+                    ->whereNotNull("deposit_amount")
+                    ->orderBy("deposited_at")
+                    ->whereNotIn("id",
+                        UsedUplinkBonus::query()
+                            ->select("used_uplink_bonuses.user_id")
+                            ->whereColumn("used_uplink_bonuses.uplink_id", "paths.ancestor_id")
+                    )
+                    ->whereIn("user_sub.id",
+                        Path::query()
+                            ->from(\DB::raw("paths as master"))
+                            ->selectRaw("master.descendant_id")
+                            ->whereIn(
+                                "ancestor_id",
+                                Path::query()->from(\DB::raw("paths as lvl1"))
+                                    ->selectRaw("descendant_id")
+                                    ->whereColumn("lvl1.ancestor_id", "<>", "lvl1.descendant_id")
+                                    ->whereColumn("lvl1.ancestor_id", "=", "paths.ancestor_id")
+                                    ->where("tree_depth", 1)
+                                    ->whereNotIn(
+                                        "lvl1.descendant_id",
+                                        Path::query()->from(\DB::raw("paths as lvl11"))
+                                            ->select("lvl11.ancestor_id")
+                                            ->whereColumn("lvl11.descendant_id", "=", "paths.descendant_id")
+                                    )
 
-                                ->whereColumn("sub_1.descendant_id", "<>", "sub_1.ancestor_id")
-                                ->whereColumn("sub_1.ancestor_id", "=", "paths.ancestor_id")
 
-                                ->whereNotIn(
-                                    "sub_1.descendant_id",
-                                    Path::query()->from(DB::raw("paths as sub_2"))
-                                        ->select("sub_2.ancestor_id")
-                                        ->whereColumn("paths.descendant_id", "=", "sub_2.descendant_id")
-                                )
+                            )
 
-                                ->whereNotIn(
-                                    "sub_1.descendant_id",
-                                    Path::query()->from(DB::raw("paths as sub_2"))
-                                        ->select("sub_2.descendant_id")
-                                        ->whereColumn("paths.descendant_id", "=", "sub_2.ancestor_id")
-                                )
-                        )
-                        ->limit(1),
+                    )
+                    ->limit(1)
             ])
             ->with("depositor")
             ->get();

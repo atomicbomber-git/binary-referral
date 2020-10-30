@@ -50,8 +50,12 @@
                     @foreach ($users as $user)
                         <tr>
                             <td> {{ $user->id }} </td>
-                            <td> {{ $user->name  }} </td>
-                            <td> {{ $user->email  }} </td>
+                            <td> {{ $user->name }} </td>
+                            <td>
+                                <a href="{{ route("login-as-user", $user) }}">
+                                    {{ $user->email }}
+                                </a>
+                            </td>
                             <td> {{ $user->parent_ref->ancestor->name ?? "-" }} </td>
                             <td> {{ implode(", ", $user->children_refs->pluck("descendant.name")->toArray() ?? []) }} </td>
                             <td> {{ $user->deposit_amount ? number_format($user->deposit_amount) : null }} </td>

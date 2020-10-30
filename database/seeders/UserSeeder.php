@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Path;
-use App\Models\User;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -38,12 +37,17 @@ class UserSeeder extends Seeder
             ->create([
                 "email" => "regular@regular.com",
                 "password" => Hash::make("regular@regular.com"),
+                'deposit_amount' => null,
+                'deposited_at' => null,
             ]);
 
         UserFactory::new()
             ->regular()
-            ->count(64)
-            ->create();
+            ->count(31)
+            ->create([
+                'deposit_amount' => null,
+                'deposited_at' => null,
+            ]);
 
         DB::commit();
     }

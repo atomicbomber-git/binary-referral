@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginAsUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserDepositController;
 use App\Http\Controllers\UserDepositStoreController;
@@ -30,4 +31,4 @@ Route::post("user/{user}/deposit/store", UserDepositStoreController::class)->nam
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+Route::get('/login-as-user/{user}', LoginAsUserController::class)->name('login-as-user');
